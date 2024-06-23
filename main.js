@@ -1,64 +1,350 @@
-document.getElementById('svg-object').addEventListener('load', function() {
-    const svgDoc = this.contentDocument;
-    svgDoc.querySelectorAll('path').forEach(path => {
-        path.addEventListener('click', function() {
-            const countryId = this.id;
-            setActiveCountry(svgDoc, countryId);
-            showCountryInfo(countryId);
-        });
-    });
-});
+const countries = {
+  norway: {
+    name: 'Norway',
+    societies: [{
+      name: 'norway',
+      link: 'norway'
+    }]
+  },
+  russia: {
+    name: 'Russia',
+    societies: [{
+      name: 'russia',
+      link: 'russia'
+    }]
+  },
+  sweden: {
+    name: 'Sweden',
+    societies: [{
+      name: 'sweden',
+      link: 'sweden'
+    }]
+  },
+  finland: {
+    name: 'Finland',
+    societies: [{
+      name: 'finland',
+      link: 'finland'
+    }]
+  },
+  'estonia-latvia': {
+    name: 'Estonia & Latvia',
+    societies: [{
+      name: 'estonia-latvia',
+      link: 'estonia-latvia'
+    }]
+  },
+  lithuania: {
+    name: 'Lithuania',
+    societies: [{
+      name: 'lithuania',
+      link: 'lithuania'
+    }]
+  },
+  belarus: {
+    name: 'Belarus',
+    societies: [{
+      name: 'belarus',
+      link: 'belarus'
+    }]
+  },
+  ukraine: {
+    name: 'Ukraine',
+    societies: [{
+      name: 'ukraine',
+      link: 'ukraine'
+    }]
+  },
+  'fixme-beneath-ukraine': {
+    name: 'Fixme Beneath Ukraine',
+    societies: [{
+      name: 'fixme-beneath-ukraine',
+      link: 'fixme-beneath-ukraine'
+    }]
+  },
+  moldova: {
+    name: 'Moldova',
+    societies: [{
+      name: 'moldova',
+      link: 'moldova'
+    }]
+  },
+  romania: {
+    name: 'Romania',
+    societies: [{
+      name: 'romania',
+      link: 'romania'
+    }]
+  },
+  bulgaria: {
+    name: 'Bulgaria',
+    societies: [{
+      name: 'bulgaria',
+      link: 'bulgaria'
+    }]
+  },
+  cyprus: {
+    name: 'Cyprus',
+    societies: [{
+      name: 'cyprus',
+      link: 'cyprus'
+    }]
+  },
+  georgia: {
+    name: 'Georgia',
+    societies: [{
+      name: 'georgia',
+      link: 'georgia'
+    }]
+  },
+  armenia: {
+    name: 'Armenia',
+    societies: [{
+      name: 'armenia',
+      link: 'armenia'
+    }]
+  },
+  greece: {
+    name: 'Greece',
+    societies: [{
+      name: 'greece',
+      link: 'greece'
+    }]
+  },
+  albania: {
+    name: 'Albania',
+    societies: [{
+      name: 'albania',
+      link: 'albania'
+    }]
+  },
+  'north-macedonia': {
+    name: 'North Macedonia',
+    societies: [{
+      name: 'north-macedonia',
+      link: 'north-macedonia'
+    }]
+  },
+  serbia: {
+    name: 'Serbia',
+    societies: [{
+      name: 'serbia',
+      link: 'serbia'
+    }]
+  },
+  montenegro: {
+    name: 'Montenegro',
+    societies: [{
+      name: 'montenegro',
+      link: 'montenegro'
+    }]
+  },
+  'bosnia-and-herzegovina': {
+    name: 'Bosnia And Herzegovina',
+    societies: [{
+      name: 'bosnia-and-herzegovina',
+      link: 'bosnia-and-herzegovina'
+    }]
+  },
+  croatia: {
+    name: 'Croatia',
+    societies: [{
+      name: 'croatia',
+      link: 'croatia'
+    }]
+  },
+  hungary: {
+    name: 'Hungary',
+    societies: [{
+      name: 'hungary',
+      link: 'hungary'
+    }]
+  },
+  slovenia: {
+    name: 'Slovenia',
+    societies: [{
+      name: 'slovenia',
+      link: 'slovenia'
+    }]
+  },
+  italy: {
+    name: 'Italy',
+    societies: [{
+      name: 'italy',
+      link: 'italy'
+    }]
+  },
+  turkey: {
+    name: 'Turkey',
+    societies: [{
+      name: 'turkey',
+      link: 'turkey'
+    }]
+  },
+  spain: {
+    name: 'Spain',
+    societies: [{
+      name: 'spain',
+      link: 'spain'
+    }]
+  },
+  portugal: {
+    name: 'Portugal',
+    societies: [{
+      name: 'portugal',
+      link: 'portugal'
+    }]
+  },
+  kosovo: {
+    name: 'Kosovo',
+    societies: [{
+      name: 'kosovo',
+      link: 'kosovo'
+    }]
+  },
+  'fixme-between-france-and-spain': {
+    name: 'Fixme Between France And Spain',
+    societies: [{
+      name: 'fixme-between-france-and-spain',
+      link: 'fixme-between-france-and-spain'
+    }]
+  },
+  switzerland: {
+    name: 'Switzerland',
+    societies: [{
+      name: 'switzerland',
+      link: 'switzerland'
+    }]
+  },
+  austria: {
+    name: 'Austria',
+    societies: [{
+      name: 'austria',
+      link: 'austria'
+    }]
+  },
+  germany: {
+    name: 'Germany',
+    societies: [{
+      name: 'germany',
+      link: 'germany'
+    }]
+  },
+  denmark: {
+    name: 'Denmark',
+    societies: [{
+      name: 'denmark',
+      link: 'denmark'
+    }]
+  },
+  'czech-republic': {
+    name: 'Czech Republic',
+    societies: [{
+      name: 'czech-republic',
+      link: 'czech-republic'
+    }]
+  },
+  slovakia: {
+    name: 'Slovakia',
+    societies: [{
+      name: 'slovakia',
+      link: 'slovakia'
+    }]
+  },
+  poland: {
+    name: 'Poland',
+    societies: [{
+      name: 'poland',
+      link: 'poland'
+    }]
+  },
+  france: {
+    name: 'France',
+    societies: [{
+      name: 'france',
+      link: 'france'
+    }]
+  },
+  'the-netherlands': {
+    name: 'The Netherlands',
+    societies: [{
+      name: 'the-netherlands',
+      link: 'the-netherlands'
+    }]
+  },
+  belgium: {
+    name: 'Belgium',
+    societies: [{
+      name: 'belgium',
+      link: 'belgium'
+    }]
+  },
+  'fixme-beneath-belgium': {
+    name: 'Fixme Beneath Belgium',
+    societies: [{
+      name: 'fixme-beneath-belgium',
+      link: 'fixme-beneath-belgium'
+    }]
+  },
+  'the-united-kingdom': {
+    name: 'The United Kingdom',
+    societies: [{
+      name: 'the-united-kingdom',
+      link: 'the-united-kingdom'
+    }]
+  },
+  ireland: {
+    name: 'Ireland',
+    societies: [{
+      name: 'ireland',
+      link: 'ireland'
+    }]
+  }
+};
 
-function setActiveCountry(svgDoc, activeId) {
-    svgDoc.querySelectorAll('path').forEach(path => {
-        if (path.id === activeId) {
-            path.classList.add('active-country');
-        } else {
-            path.classList.remove('active-country');
-        }
-    });
+const showCountryInfo = (name, societies) => {
+  const infoDiv = document.getElementById('country-info-container');
+  const countryName = document.getElementById('country-name');
+  const societyLinks = document.getElementById('society-links');
+
+  countryName.textContent = name;
+
+  societyLinks.innerHTML = '';
+  societies.forEach((society) => {
+    const link = document.createElement('a');
+    link.href = society.link;
+    link.textContent = society.name;
+    societyLinks.appendChild(link);
+    societyLinks.appendChild(document.createElement('br'));
+  });
+
+  infoDiv.classList.add('active');
 }
 
-function showCountryInfo(countryId) {
-    const infoDiv = document.getElementById('country-info-container');
-    const countryName = document.getElementById('country-name');
-    const societyLinks = document.getElementById('society-links');
-    const countryData = {
-        country1: {
-            name: "Country1",
-            societies: [
-                { name: "Ireland Psychoanalytic Society", link: "#" }
-            ]
-        },
-        country2: {
-            name: "Country2",
-            societies: [
-                { name: "Country2 Psychoanalytic Society 1", link: "#" },
-                { name: "Country2 Psychoanalytic Society 2", link: "#" }
-            ]
-        }
-        // Dodajte ostale zemlje i njihove informacije ovde
-    };
+let selectedCountryElement = null;
 
-    const data = countryData[countryId] || { name: "Informacije nisu dostupne", societies: [] };
-    countryName.textContent = data.name;
-    societyLinks.innerHTML = "";
-    data.societies.forEach(society => {
-        const link = document.createElement('a');
-        link.href = society.link;
-        link.textContent = society.name;
-        societyLinks.appendChild(link);
-        societyLinks.appendChild(document.createElement('br'));
-    });
-
-    infoDiv.classList.add('active');
-}
-
-document.addEventListener('click', function(e) {
-    const svgObject = document.getElementById('svg-object');
-    if (svgObject && !svgObject.contains(e.target)) {
-        document.getElementById('country-info-container').classList.remove('active');
-        const svgDoc = svgObject.contentDocument;
-        setActiveCountry(svgDoc, null);
+window.onload = () => {
+  document.body.addEventListener('click', () => {
+    if (selectedCountryElement) {
+      selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
+      selectedCountryElement = null;
     }
-});
+    document.getElementById('country-info-container').classList.remove('active');
+  });
+
+  for (const [countrySlug, { name, societies }] of Object.entries(countries)) {
+    const countryElement = document.getElementById(countrySlug);
+    countryElement.addEventListener('click', (event) => {
+      if (selectedCountryElement) {
+        selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
+      }
+      selectedCountryElement = countryElement;
+
+      countryElement.setAttribute('style', 'fill: red');
+
+      showCountryInfo(name, societies);
+
+      event.stopPropagation();
+    });
+  }
+};
