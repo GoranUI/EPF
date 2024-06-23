@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0;
+    height: 100vh;
+    padding: 20px;
+}
+.info-container {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.info-container h4 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.info-container h2 {
+    margin: 0.5em 0;
+    font-size: 2em;
+}
+.info-container p {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.5;
+}
+.country-info-container {
+    display: none;
+    background-color: white;
+    border: 1px solid #e7e7e7;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+    flex: 0 1 fit-content;
+}
+.country-info-container.active {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.country-info-container h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+.country-info-container hr {
+    border: none;
+    border-top: 1px solid #e7e7e7;
+    margin: 10px 0;
+}
+.country-info-container a {
+    text-decoration: none;
+    color: black;
+}
+.country-info-container a:hover {
+    color: red;
+}
+.map-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+object {
+    width: 100%;
+    height: auto;
+}
+.active-country {
+    fill: red !important;
+}

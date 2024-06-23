@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Europe Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <body>
+        <div class="info-container">
+            <div>
+                <p class="red-title">Interactive map</p>
+                <h2>Explore the EPF Member Societies</h2>
+                <p>Hover over a country on the map to <br> learn more about its psychoanalytical societies.</p>
+            </div>
+            <div class="country-info-container" id="country-info-container">
+                <h3 id="country-name">Country Name</h3>
+                <hr>
+                <div id="society-links"></div>
+            </div>
+        </div>
+        <div class="map-container">
+            <object id="svg-object" type="image/svg+xml" data="assets/europe-map.svg"></object>
+        </div>
+    
+
+    <script src="main.js"></script>
+</body>
+</html>
