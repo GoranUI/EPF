@@ -249,7 +249,7 @@ const showCountryInfo = (name, societies) => {
 
 const drawBezierCurve = (country) => {
   const elem1 = document.querySelector('.country-info-container');
-  const elem2 = document.getElementById(country);
+  const elem2 = document.getElementById(`${country}-circle`);
 
   const rect1 = elem1.getBoundingClientRect();
   const rect2 = elem2.getBoundingClientRect();
@@ -263,36 +263,52 @@ const drawBezierCurve = (country) => {
   const controlPoint2X = rect2.left + rect2.width / 2;
   const controlPoint2Y = rect2.top;
 
-  const endX = rect2.left;
-  const endY = rect2.top;
+  const endX = rect2.left + rect2.width / 2;
+  const endY = rect2.top + rect2.height / 2;
 
-  const bezierCurvePath = document.getElementById('bezierCurve');
+  const bezierCurvePath = document.getElementById('bezier-curve');
   const pathData = `M${startX},${startY} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${endX},${endY}`;
   bezierCurvePath.setAttribute('d', pathData);
 };
 
 let selectedCountryElement = null;
+let selectedCountryCircleElement = null;
 
 window.onload = () => {
+  const bezierCurveContainer = document.getElementById('bezier-curve-container');
+  bezierCurveContainer.setAttribute('width', document.body.clientWidth);
+  bezierCurveContainer.setAttribute('height', document.body.clientHeight);
+  bezierCurveContainer.setAttribute('viewport', `0 0 ${document.body.clientWidth} ${document.body.clientHeight}`);
+
   document.body.addEventListener('click', () => {
     if (selectedCountryElement) {
       selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
       selectedCountryElement = null;
+      selectedCountryCircleElement.setAttribute('style', 'opacity: 0');
+      selectedCountryCircleElement = null;
     }
+    document.getElementById('bezier-curve').setAttribute('d', '');
     document.getElementById('country-info-container').classList.remove('active');
   });
 
   for (const [countrySlug, { name, societies }] of Object.entries(countries)) {
     const countryElement = document.getElementById(countrySlug);
+    const countryCircleElement = document.getElementById(`${countrySlug}-circle`);
+
     countryElement.addEventListener('click', (event) => {
       if (selectedCountryElement) {
         selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
+        selectedCountryCircleElement.setAttribute('style', 'opacity: 0');
       }
       selectedCountryElement = countryElement;
+      selectedCountryCircleElement = countryCircleElement;
 
       countryElement.setAttribute('style', 'fill: url("#active-gradient")');
+      countryCircleElement.setAttribute('style', 'opacity: 1');
 
       showCountryInfo(name, societies);
+
+      drawBezierCurve(countrySlug);
 
       event.stopPropagation();
     });

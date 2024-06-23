@@ -9,6 +9,10 @@
 </head>
 
 <body>
+  <svg xmlns="http://www.w3.org/2000/svg" id="bezier-curve-container"
+    style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 10; pointer-events: none;">
+    <path id="bezier-curve" stroke="black" stroke-width="1" fill="none"></path>
+  </svg>
   <div class="info-container">
     <div>
       <p class="red-title">Interactive map</p>
@@ -156,31 +160,34 @@
           fill="#DEDEDE" stroke="#666666" />
         <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="385.85" cy="439.2" r="8" id="poland-circle" />
         <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="254.24" cy="455.2" r="8" id="germany-circle" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="331.49" cy="487.98" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="560.86" cy="499.33" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="648.27" cy="397.5" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="470.78" cy="296.71" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="470.78" cy="337.84" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="442.39" cy="374.14" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="462.78" cy="202.68" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="339.49" cy="248.71" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="243.53" cy="240.71" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="249.53" cy="358.14" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="113.34" cy="434.85" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="157.63" cy="547.6" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="190.1" cy="465.01" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="207.64" cy="432.2" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="277.79" cy="597.65" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="320.08" cy="531.6" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="347.49" cy="565.8" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="400.85" cy="593.91" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="454.78" cy="620.9" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="454.78" cy="565.8" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="377.85" cy="542.33" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="414.63" cy="680.72" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="580.96" cy="688.72" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="85.86" cy="664.72" r="8" />
-        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="23.47" cy="652.79" r="8" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="331.49" cy="487.98" r="8"
+          id="czech-republic-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="560.86" cy="499.33" r="8" id="ukraine-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="648.27" cy="397.5" r="8" id="russia-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="470.78" cy="296.71" r="8"
+          id="estonia-latvia-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="442.39" cy="374.14" r="8" id="lithuania-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="462.78" cy="202.68" r="8" id="finland-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="339.49" cy="248.71" r="8" id="sweden-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="243.53" cy="240.71" r="8" id="norway-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="249.53" cy="358.14" r="8" id="denmark-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="113.34" cy="434.85" r="8"
+          id="the-united-kingdom-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="157.63" cy="547.6" r="8" id="france-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="190.1" cy="465.01" r="8" id="belgium-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="207.64" cy="432.2" r="8"
+          id="the-netherlands-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="277.79" cy="597.65" r="8" id="italy-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="320.08" cy="531.6" r="8" id="austria-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="347.49" cy="565.8" r="8" id="croatia-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="400.85" cy="593.91" r="8" id="serbia-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="454.78" cy="620.9" r="8" id="bulgaria-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="454.78" cy="565.8" r="8" id="romania-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="377.85" cy="542.33" r="8" id="hungary-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="414.63" cy="680.72" r="8" id="greece-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="580.96" cy="688.72" r="8" id="turkey-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="85.86" cy="664.72" r="8" id="spain-circle" />
+        <circle fill="white" stroke="#C9C7C7" stroke-width="4px" cx="23.47" cy="652.79" r="8" id="portugal-circle" />
       </g>
 
       <defs>
