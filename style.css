@@ -1,3 +1,84 @@
+@font-face {
+  font-family: Tobias;
+  font-style: normal;
+  font-weight: 300;
+  src: local(""), url(assets/fonts/Tobias-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Tobias;
+  font-style: italic;
+  font-weight: 300;
+  src: local(""), url(assets/fonts/Tobias-LightItalic.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Tobias;
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(assets/fonts/Tobias-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Tobias;
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url(assets/fonts/Tobias-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Neue Haas Grotesk;
+  font-style: normal;
+  font-weight: 200;
+  src: local(""), url(assets/fonts/NeueHaasGroteskDisplayPro-35ExtraLight.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Neue Haas Grotesk;
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url(assets/fonts/NeueHaasGroteskDisplayPro-55Roman.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Neue Haas Grotesk;
+  font-style: italic;
+  font-weight: 400;
+  src: local(""), url(assets/fonts/NeueHaasGroteskDisplayPro-56Italic.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: Neue Haas Grotesk;
+  font-style: normal;
+  font-weight: 500;
+  src: local(""), url(assets/fonts/NeueHaasGroteskDisplayPro-65Medium.ttf) format("truetype");
+}
+
+:root {
+  --red: #e5332f;
+  --green: #379e15;
+  --green-indicator: #08c734;
+  --blue: #1570a6;
+  --gray: #b9b9b9;
+  --white: #ffffff;
+  --red-alert: #ff2c2c;
+  --black: #000;
+  --primary-color: var(--red);
+  --border-color: #707070;
+  --light-grey: #f7f7f7;
+  --app-height: 100vh;
+  --font-tobias: "Tobias", serif;
+  --font-grotesk: "Neue Haas Grotesk", sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-tobias);
+}
+
+p {
+  font-family: var(--font-grotesk);
+}
+
 body {
   display: flex;
   justify-content: space-between;
@@ -7,6 +88,15 @@ body {
   padding: 20px;
 }
 
+.red-title {
+  font-family: var(--font-grotesk);
+  font-size: 14px;
+  letter-spacing: 1.12px;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--primary-color);
+}
+
 .info-container {
   max-width: 50%;
   display: flex;
@@ -14,26 +104,11 @@ body {
   justify-content: space-between;
 }
 
-.info-container h4 {
-  margin: 0;
-  font-size: 1.5em;
-}
-
-.info-container h2 {
-  margin: 0.5em 0;
-  font-size: 2em;
-}
-
-.info-container p {
-  margin: 0;
-  font-size: 1em;
-  line-height: 1.5;
-}
 
 .country-info-container {
   display: none;
-  background-color: white;
-  border: 1px solid #e7e7e7;
+  background-color: var(--white);
+  border: 1px solid var(--light-grey);
   border-radius: 8px;
   padding: 16px;
   margin-top: 20px;
@@ -53,17 +128,17 @@ body {
 
 .country-info-container hr {
   border: none;
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid var(--light-grey);
   margin: 10px 0;
 }
 
 .country-info-container a {
   text-decoration: none;
-  color: black;
+  color: var(--black);
 }
 
 .country-info-container a:hover {
-  color: red;
+  color: var(--primary-color);
 }
 
 .map-container {
