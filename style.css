@@ -97,6 +97,8 @@ body {
   color: var(--primary-color);
 }
 
+
+
 .info-container {
   max-width: 50%;
   display: flex;
@@ -161,4 +163,11 @@ object {
 
 path {
   transition: 0.3s;
+}
+
+@media only screen and (min-width: 1140px) {
+  #main {
+      padding-left: min(119px, 8.7115666179vw);
+      padding-right: min(119px, 8.7115666179vw);
+  }
 }
