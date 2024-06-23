@@ -41,32 +41,11 @@ const countries = {
       link: 'lithuania'
     }]
   },
-  belarus: {
-    name: 'Belarus',
-    societies: [{
-      name: 'belarus',
-      link: 'belarus'
-    }]
-  },
   ukraine: {
     name: 'Ukraine',
     societies: [{
       name: 'ukraine',
       link: 'ukraine'
-    }]
-  },
-  'fixme-beneath-ukraine': {
-    name: 'Fixme Beneath Ukraine',
-    societies: [{
-      name: 'fixme-beneath-ukraine',
-      link: 'fixme-beneath-ukraine'
-    }]
-  },
-  moldova: {
-    name: 'Moldova',
-    societies: [{
-      name: 'moldova',
-      link: 'moldova'
     }]
   },
   romania: {
@@ -83,27 +62,6 @@ const countries = {
       link: 'bulgaria'
     }]
   },
-  cyprus: {
-    name: 'Cyprus',
-    societies: [{
-      name: 'cyprus',
-      link: 'cyprus'
-    }]
-  },
-  georgia: {
-    name: 'Georgia',
-    societies: [{
-      name: 'georgia',
-      link: 'georgia'
-    }]
-  },
-  armenia: {
-    name: 'Armenia',
-    societies: [{
-      name: 'armenia',
-      link: 'armenia'
-    }]
-  },
   greece: {
     name: 'Greece',
     societies: [{
@@ -111,39 +69,11 @@ const countries = {
       link: 'greece'
     }]
   },
-  albania: {
-    name: 'Albania',
-    societies: [{
-      name: 'albania',
-      link: 'albania'
-    }]
-  },
-  'north-macedonia': {
-    name: 'North Macedonia',
-    societies: [{
-      name: 'north-macedonia',
-      link: 'north-macedonia'
-    }]
-  },
   serbia: {
     name: 'Serbia',
     societies: [{
       name: 'serbia',
       link: 'serbia'
-    }]
-  },
-  montenegro: {
-    name: 'Montenegro',
-    societies: [{
-      name: 'montenegro',
-      link: 'montenegro'
-    }]
-  },
-  'bosnia-and-herzegovina': {
-    name: 'Bosnia And Herzegovina',
-    societies: [{
-      name: 'bosnia-and-herzegovina',
-      link: 'bosnia-and-herzegovina'
     }]
   },
   croatia: {
@@ -158,13 +88,6 @@ const countries = {
     societies: [{
       name: 'hungary',
       link: 'hungary'
-    }]
-  },
-  slovenia: {
-    name: 'Slovenia',
-    societies: [{
-      name: 'slovenia',
-      link: 'slovenia'
     }]
   },
   italy: {
@@ -193,20 +116,6 @@ const countries = {
     societies: [{
       name: 'portugal',
       link: 'portugal'
-    }]
-  },
-  kosovo: {
-    name: 'Kosovo',
-    societies: [{
-      name: 'kosovo',
-      link: 'kosovo'
-    }]
-  },
-  'fixme-between-france-and-spain': {
-    name: 'Fixme Between France And Spain',
-    societies: [{
-      name: 'fixme-between-france-and-spain',
-      link: 'fixme-between-france-and-spain'
     }]
   },
   switzerland: {
@@ -242,13 +151,6 @@ const countries = {
     societies: [{
       name: 'czech-republic',
       link: 'czech-republic'
-    }]
-  },
-  slovakia: {
-    name: 'Slovakia',
-    societies: [{
-      name: 'slovakia',
-      link: 'slovakia'
     }]
   },
   poland: {
@@ -293,13 +195,6 @@ const countries = {
       link: 'the-united-kingdom'
     }]
   },
-  ireland: {
-    name: 'Ireland',
-    societies: [{
-      name: 'ireland',
-      link: 'ireland'
-    }]
-  }
 };
 
 const showCountryInfo = (name, societies) => {
@@ -340,7 +235,7 @@ window.onload = () => {
       }
       selectedCountryElement = countryElement;
 
-      countryElement.setAttribute('style', 'fill: red');
+      countryElement.setAttribute('style', 'fill: url("#active-gradient")');
 
       showCountryInfo(name, societies);
 
