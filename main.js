@@ -254,29 +254,6 @@ const countries = {
   }
 };
 
-const showCountryInfo = (name, societies) => {
-  const infoDiv = document.getElementById('country-info-container');
-  const countryName = document.getElementById('country-name');
-  const societyLinks = document.getElementById('society-links');
-
-  infoDiv.style.opacity = 0;
-
-  setTimeout(() => {
-    countryName.textContent = name;
-
-    societyLinks.innerHTML = '';
-    societies.forEach((society) => {
-      const link = document.createElement('a');
-      link.href = society.link;
-      link.target = '_blank';
-      link.textContent = society.name;
-      link.addEventListener('click', (e) => e.stopPropagation());
-      societyLinks.appendChild(link);
-    });
-
-    infoDiv.style.opacity = 1;
-  }, 300);
-}
 const drawBezierCurve = (country) => {
   const infoDiv = document.querySelector('.country-info-container .circle');
   const countryCircleDiv = document.getElementById(`${country}-circle`);
@@ -325,6 +302,31 @@ const drawBezierCurve = (country) => {
   endCap.classList.remove('circle-hidden');
 };
 
+const showCountryInfo = (countrySlug, name, societies) => {
+  const infoDiv = document.getElementById('country-info-container');
+  const countryName = document.getElementById('country-name');
+  const societyLinks = document.getElementById('society-links');
+
+  infoDiv.style.opacity = 0;
+
+  setTimeout(() => {
+    countryName.textContent = name;
+
+    societyLinks.innerHTML = '';
+    societies.forEach((society) => {
+      const link = document.createElement('a');
+      link.href = society.link;
+      link.target = '_blank';
+      link.textContent = society.name;
+      link.addEventListener('click', (e) => e.stopPropagation());
+      societyLinks.appendChild(link);
+    });
+
+    drawBezierCurve(countrySlug);
+    infoDiv.style.opacity = 1;
+  }, 300);
+}
+
 let selectedCountryElement = null;
 let selectedCountryCircleElement = null;
 
@@ -364,9 +366,7 @@ window.onload = () => {
       countryElement.setAttribute('style', 'fill: url("#active-gradient")');
       countryCircleElement.setAttribute('style', 'opacity: 1');
 
-      showCountryInfo(name, societies);
-
-      drawBezierCurve(countrySlug);
+      showCountryInfo(countrySlug, name, societies);
 
       event.stopPropagation();
     });
