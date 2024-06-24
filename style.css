@@ -186,10 +186,6 @@ body {
   z-index: 5;
 }
 
-.country-info-container.active {
-  opacity: 1;
-}
-
 .circle {
   width: 14px;
   height: 14px;

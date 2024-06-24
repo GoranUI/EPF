@@ -345,7 +345,7 @@ window.onload = () => {
         selectedCountryCircleElement = null;
       }
       document.getElementById('bezier-curve').setAttribute('d', '');
-      document.getElementById('country-info-container').classList.remove('active');
+      document.getElementById('country-info-container').style.opacity='0';
       document.getElementById('start-cap').classList.add('circle-hidden');
       document.getElementById('end-cap').classList.add('circle-hidden');
     }
