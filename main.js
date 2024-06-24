@@ -136,13 +136,13 @@ const countries = {
       link: 'https://www.epf-fep.eu/en/society/portuguese-nucleus-of-psychoanalysis',
     }],
   },
-switzerland: {
-  name: 'Switzerland',
-  societies: [{
-    name: 'Swiss Society of Psychoanalysis',
-    link: 'https://www.epf-fep.eu/en/society/swiss-society-of-psychoanalysis',
-  }],
-},
+  switzerland: {
+    name: 'Switzerland',
+    societies: [{
+      name: 'Swiss Society of Psychoanalysis',
+      link: 'https://www.epf-fep.eu/en/society/swiss-society-of-psychoanalysis',
+    }],
+  },
   austria: {
     name: 'Austria',
     societies: [{
@@ -259,19 +259,23 @@ const showCountryInfo = (name, societies) => {
   const countryName = document.getElementById('country-name');
   const societyLinks = document.getElementById('society-links');
 
-  countryName.textContent = name;
+  infoDiv.style.opacity = 0;
 
-  societyLinks.innerHTML = '';
-  societies.forEach((society) => {
-    const link = document.createElement('a');
-    link.href = society.link;
-    link.target = '_blank';
-    link.textContent = society.name;
-    link.addEventListener('click', (e) => e.stopPropagation());
-    societyLinks.appendChild(link);
-  });
+  setTimeout(() => {
+    countryName.textContent = name;
 
-  infoDiv.classList.add('active');
+    societyLinks.innerHTML = '';
+    societies.forEach((society) => {
+      const link = document.createElement('a');
+      link.href = society.link;
+      link.target = '_blank';
+      link.textContent = society.name;
+      link.addEventListener('click', (e) => e.stopPropagation());
+      societyLinks.appendChild(link);
+    });
+
+    infoDiv.style.opacity = 1;
+  }, 300);
 }
 const drawBezierCurve = (country) => {
   const infoDiv = document.querySelector('.country-info-container .circle');
@@ -367,5 +371,5 @@ window.onload = () => {
       event.stopPropagation();
     });
   }
-  
+
 };
