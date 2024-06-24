@@ -136,13 +136,13 @@ const countries = {
       link: 'https://www.epf-fep.eu/en/society/portuguese-nucleus-of-psychoanalysis',
     }],
   },
-  switzerland: {
-    name: 'Switzerland',
-    societies: [{
-      name: 'Swiss Society of Psychoanalysis',
-      link: 'https://www.epf-fep.eu/en/society/swiss-society-of-psychoanalysis',
-    }],
-  },
+switzerland: {
+  name: 'Switzerland',
+  societies: [{
+    name: 'Swiss Society of Psychoanalysis',
+    link: 'https://www.epf-fep.eu/en/society/swiss-society-of-psychoanalysis',
+  }],
+},
   austria: {
     name: 'Austria',
     societies: [{
@@ -224,6 +224,34 @@ const countries = {
       link: 'https://www.epf-fep.eu/en/society/northern-ireland-psychoanalytic-society',
     }],
   },
+  australia: {
+    name: 'Australia',
+    societies: [{
+      name: 'Australian Psychoanalytic Society',
+      link: 'https://www.epf-fep.eu/en/society/australian-psychoanalytic-society',
+    }],
+  },
+  lebanon: {
+    name: 'Lebanon',
+    societies: [{
+      name: 'Lebanese Association for the Development of Psychoanalysis',
+      link: 'https://www.epf-fep.eu/en/society/lebanese-association-for-the-development-of-psychoanalysis',
+    }],
+  },
+  israel: {
+    name: 'Israel',
+    societies: [{
+      name: 'Israel Psychoanalytic Society',
+      link: 'https://www.epf-fep.eu/en/society/israel-psychoanalytic-society',
+    }],
+  },
+  'south-africa': {
+    name: 'South Africa',
+    societies: [{
+      name: 'South African Psychoanalytical Association',
+      link: 'https://www.epf-fep.eu/en/society/south-african-psychoanalytical-association',
+    }],
+  }
 };
 
 const showCountryInfo = (name, societies) => {
@@ -241,34 +269,56 @@ const showCountryInfo = (name, societies) => {
     link.textContent = society.name;
     link.addEventListener('click', (e) => e.stopPropagation());
     societyLinks.appendChild(link);
-    societyLinks.appendChild(document.createElement('br'));
   });
 
   infoDiv.classList.add('active');
 }
-
 const drawBezierCurve = (country) => {
-  const elem1 = document.querySelector('.country-info-container');
-  const elem2 = document.getElementById(`${country}-circle`);
+  const infoDiv = document.querySelector('.country-info-container .circle');
+  const countryCircleDiv = document.getElementById(`${country}-circle`);
 
-  const rect1 = elem1.getBoundingClientRect();
-  const rect2 = elem2.getBoundingClientRect();
+  const infoRect = infoDiv.getBoundingClientRect();
+  const countryCircleRect = countryCircleDiv.getBoundingClientRect();
 
-  const startX = rect1.left + rect1.width / 2;
-  const startY = rect1.top;
+  const startX = infoRect.left + infoRect.width / 2;
+  const startY = infoRect.top + infoRect.height / 2;
 
-  const controlPoint1X = rect1.left + rect1.width / 2;
-  const controlPoint1Y = rect1.top + rect1.height;
+  const endX = countryCircleRect.left + countryCircleRect.width / 2;
+  const endY = countryCircleRect.top + countryCircleRect.height / 2;
 
-  const controlPoint2X = rect2.left + rect2.width / 2;
-  const controlPoint2Y = rect2.top;
+  // Calculate the distance between start and end points
+  const dx = endX - startX;
+  const dy = endY - startY;
 
-  const endX = rect2.left + rect2.width / 2;
-  const endY = rect2.top + rect2.height / 2;
+  // Midpoint between the start and end points
+  const midX = (startX + endX) / 2;
+  const midY = (startY + endY) / 2;
+
+  // Calculate the control points above the midpoint
+  const controlHeight = Math.min(Math.sqrt(dx * dx + dy * dy) / 2, 150);
+
+  const controlPoint1X = startX + 0.25 * dx;
+  const controlPoint1Y = midY - controlHeight;
+
+  const controlPoint2X = startX + 0.75 * dx;
+  const controlPoint2Y = midY - controlHeight;
 
   const bezierCurvePath = document.getElementById('bezier-curve');
   const pathData = `M${startX},${startY} C${controlPoint1X},${controlPoint1Y} ${controlPoint2X},${controlPoint2Y} ${endX},${endY}`;
   bezierCurvePath.setAttribute('d', pathData);
+
+  // Position the start and end caps
+  const startCap = document.getElementById('start-cap');
+  startCap.setAttribute('cx', startX);
+  startCap.setAttribute('cy', startY);
+
+  const endCap = document.getElementById('end-cap');
+  endCap.setAttribute('cx', endX);
+  endCap.setAttribute('cy', endY);
+
+  // Make the circles visible
+  startCap.classList.remove('circle-hidden');
+  endCap.classList.remove('circle-hidden');
 };
 
 let selectedCountryElement = null;
@@ -280,15 +330,19 @@ window.onload = () => {
   bezierCurveContainer.setAttribute('height', document.body.clientHeight);
   bezierCurveContainer.setAttribute('viewport', `0 0 ${document.body.clientWidth} ${document.body.clientHeight}`);
 
-  document.body.addEventListener('click', () => {
-    if (selectedCountryElement) {
-      selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
-      selectedCountryElement = null;
-      selectedCountryCircleElement.setAttribute('style', 'opacity: 0');
-      selectedCountryCircleElement = null;
+  document.body.addEventListener('click', (event) => {
+    if (!event.target.classList.contains('circle-cap')) {
+      if (selectedCountryElement) {
+        selectedCountryElement.setAttribute('style', 'fill: #DEDEDE');
+        selectedCountryElement = null;
+        selectedCountryCircleElement.setAttribute('style', 'opacity: 0');
+        selectedCountryCircleElement = null;
+      }
+      document.getElementById('bezier-curve').setAttribute('d', '');
+      document.getElementById('country-info-container').classList.remove('active');
+      document.getElementById('start-cap').classList.add('circle-hidden');
+      document.getElementById('end-cap').classList.add('circle-hidden');
     }
-    document.getElementById('bezier-curve').setAttribute('d', '');
-    document.getElementById('country-info-container').classList.remove('active');
   });
 
   for (const [countrySlug, { name, societies }] of Object.entries(countries)) {
@@ -313,4 +367,5 @@ window.onload = () => {
       event.stopPropagation();
     });
   }
+  
 };
